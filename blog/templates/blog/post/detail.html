@@ -1,5 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load blog_tags %}
+{% load bootstrap %}
 {% block title %} {{ post.title }} {% endblock %}
 
 {% block content %}
@@ -53,10 +54,12 @@
         </h2>
     {% else %}
     <h2>Добавить новый комментарий.</h2>
-        <form action="." method="post">
-            {{ comment_form.as_p }}
+        <form role="form" action="." method="post">
+            {{ comment_form|bootstrap}}
             {% csrf_token %}
-            <p><input type="submit" value="Добавить комментарий"></p>
+            <div class="form-group">
+            <p><input type="submit" class="btn btn-primary" value="Добавить комментарий"></p>
+            </div>
         </form>
     {% endif %}
 {% endblock %}
