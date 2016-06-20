@@ -31,7 +31,6 @@ def post_list(request, tag_slug=None):
                    'tag': tag},
                   )
 
-#TODO починить rss
 
 @login_required
 def post_detail(request, post):
