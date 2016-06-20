@@ -6,6 +6,7 @@ from .forms import EmailPostForm, CommentForm
 from taggit.models import Tag
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
+from allauth.account.views import *
 
 
 def post_list(request, tag_slug=None):
@@ -30,6 +31,7 @@ def post_list(request, tag_slug=None):
                    'tag': tag},
                   )
 
+#TODO починить rss
 
 @login_required
 def post_detail(request, post):
@@ -80,3 +82,19 @@ def post_share(request, post_id):
     return render(request, 'blog/post/share.html', {'post': post,
                                                     'form': form,
                                                     'sent': sent})
+
+
+class JointLoginSignupView(LoginView):
+    form_class = LoginForm
+    signup_form = SignupForm
+
+    def __init__(self, **kwargs):
+        super(JointLoginSignupView, self).__init__(*kwargs)
+
+    def get_context_data(self, **kwargs):
+        ret = super(JointLoginSignupView, self).get_context_data(**kwargs)
+        ret['signupform'] = get_form_class(app_settings.FORMS, 'signup', self.signup_form)
+        return ret
+
+
+login = JointLoginSignupView.as_view()

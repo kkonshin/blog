@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractBaseUser
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
 from django_markdown.models import MarkdownField
@@ -40,7 +40,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-# TODO возм вернуть арги
+# TODO возм вернуть арги, кроме слагов
     def get_absolute_url(self):
         return reverse('blog:post_detail',
                        args=[self.slug,]
@@ -48,7 +48,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, related_name='comments', verbose_name='Пост')
+    post = models.ForeignKey(Post, related_name='comments', verbose_name='Пост')  # многие к одному
     name = models.CharField(max_length=80, verbose_name='Имя')
     email = models.EmailField(verbose_name='E-Mail')
     body = models.TextField(verbose_name='Текст комментария')

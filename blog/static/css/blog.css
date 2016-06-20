@@ -1,16 +1,13 @@
+/* убрать лишнее */
 #top {
     position: fixed;
-    font-family: "Arial";
-    font-size: 18px;
-    background: linear-gradient(to left, #3399cc , white);
-    width: 100%;
-    margin-left: auto;
-    padding-top: auto;
+    font-family:"Arimo", sans-serif;
+    font-size:18px;
+    width:100%;
+    background-color:#fff;
+    margin-left:auto;
 }
 
-# logo {
-    font-size:32;
-}
 #content {
     float:left;
     margin-top: 100px;
@@ -26,6 +23,14 @@
     margin-right:20px;
     padding:10px;
     height:100%;
+}
+
+#social{
+    margin-left:0px;
+}
+
+a {
+    color:#597da3;
 }
 
 p.date { 

@@ -10,20 +10,47 @@
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
 </head>
+
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
+
 <div id="top">
-       <ul class="nav nav-tabs">
-           <li><a href="{% url 'blog:post_list'%}">На главную</a></li>
-                {% if user.is_authenticated %}
-                <li><a href="{% url 'account_logout' %}">Выйти</a></li>
-                {% else %}
-                <li><a href="{% url 'account_login' %}">Вход</a></li>
-                {% endif %}
-        </ul>
+    <div class="container-fluid">
+        <div class="raw">
+
+                <ul class="nav nav-tabs">
+                   <li class="active"><a href="{% url 'blog:post_list'%}">На главную</a></li>
+                        {% if user.is_authenticated %}
+                   <li><a href="{% url 'account_logout' %}">Выйти</a></li>
+                        {% else %}
+                   <li><a href="{% url 'account_login' %}">Вход</a></li>
+                   <li><a href="{% url 'account_login' %}">Регистрация</a></li>
+                        {% endif %}
+               </ul>
+
+            <!--<div class="col-md-5 col-md-offset-1">-->
+                <!--<form class="form-inline">-->
+                   <!--<div class="form-group">-->
+                        <!--<label for="exampleInputName2">Имя</label>-->
+                        <!--<input type="text" class="form-control" id="exampleInputName2" placeholder="Имя">-->
+                   <!--</div>-->
+
+                   <!--<div class="form-group">-->
+                        <!--<label for="exampleInputEmail2">Email</label>-->
+                        <!--<input type="email" class="form-control" id="exampleInputEmail2" placeholder="ivanov@mail.com">-->
+                   <!--</div>-->
+                   <!--<button type="submit" class="btn btn-default">Войти</button>-->
+               <!--</form>-->
+            <!--</div>-->
+        </div>
+    </div>
 </div>
+
 
 
 <div id="content">
@@ -32,9 +59,16 @@
 </div>
 
 <div id="sidebar">
+
+    <div id="social" class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir"></div>
+
     <h2>Блог петоводов</h2>
         <p>В нем {% total_posts %} записей.</p>
-    <p><a href="{% url 'blog:post_feed' %}">Подписаться на RSS</a></p>
+
+    <p><a href="{% url 'blog:post_feed' %}"><img src="../static/img/rss-icon.png" height="64px" width="64px"
+        alt="Подписаться на RSS"></a>
+    </p>
+
     <h3>Недавние записи:</h3>
     {% show_latest_posts 15 %}
     <h3>Самые комментируемые записи:</h3>
@@ -46,6 +80,14 @@
         </li>
         {% endfor %}
     </ul>
+
+    <script type="text/javascript" src="//vk.com/js/api/openapi.js?122"></script>
+
+    <!-- VK Widget -->
+    <div id="vk_groups"></div>
+    <script type="text/javascript">
+    VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "400", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 20003922);
+    </script>
 </div>
 
 </body>
