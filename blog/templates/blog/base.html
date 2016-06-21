@@ -1,6 +1,8 @@
 {% load blog_tags %}
 {% load bootstrap %}
 {% load staticfiles %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -62,8 +64,9 @@
 
     <div id="social" class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,moimir"></div>
 
-    <h2>Блог петоводов</h2>
+    <h2>Блог для петоводов</h2>
         <p>В нем {% total_posts %} записей.</p>
+    <!--добавить blocktrans или pluralize-->
 
     <p><a href="{% url 'blog:post_feed' %}"><img src="{% static 'img/rss-icon.png' %}" height="64px" width="64px"
         alt="Подписаться на RSS"></a>
