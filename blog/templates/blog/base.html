@@ -65,7 +65,7 @@
     <h2>Блог петоводов</h2>
         <p>В нем {% total_posts %} записей.</p>
 
-    <p><a href="{% url 'blog:post_feed' %}"><img src="../static/img/rss-icon.png" height="64px" width="64px"
+    <p><a href="{% url 'blog:post_feed' %}"><img src="{% static 'img/rss-icon.png' %}" height="64px" width="64px"
         alt="Подписаться на RSS"></a>
     </p>
 

@@ -1,36 +1,61 @@
+{% load bootstrap %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
+      <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>{% block head_title %}{% endblock %}</title>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Arimo&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+
+
+      {% block extra_head %}
     {% endblock %}
   </head>
+
   <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     {% block body %}
 
+
+    {% comment %}
     {% if messages %}
     <div>
       <strong>Messages:</strong>
       <ul>
-	{% for message in messages %}
-	<li>{{message}}</li>
-	{% endfor %}
+	    {% for message in messages %}
+	    <li>{{message}}</li>
+	    {% endfor %}
       </ul>
     </div>
     {% endif %}
 
-    <div>
-      <strong>Menu:</strong>
-      <ul>
-	{% if user.is_authenticated %}
-	<li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-	<li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-	{% else %}
-	<li><a href="{% url 'account_login' %}">Sign In</a></li>
-	<li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-	{% endif %}
+    {% endcomment %}
+
+    <div class="container">
+        <div class="col-md-4 col-md-push-3">
+            <!--<nav class="navbar navbar-default">-->
+      <ul class="nav navbar-nav">
+	    {% if user.is_authenticated %}
+
+	        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+	        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+
+          {% else %}
+
+	        <li><a href="{% url 'account_login' %}">Войти</a></li>
+	        <li><a href="{% url 'account_signup' %}">Зарегистрироваться</a></li>
+
+          {% endif %}
       </ul>
+                </nav>
     </div>
+        </div>
+
     {% block content %}
     {% endblock %}
     {% endblock %}
