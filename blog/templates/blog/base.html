@@ -17,7 +17,7 @@
 
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 <script type="text/javascript" src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js" charset="utf-8"></script>
 <script type="text/javascript" src="//yastatic.net/share2/share.js" charset="utf-8"></script>
 
@@ -68,7 +68,7 @@
         <p>Статей: {% total_posts %} </p>
     <!--добавить blocktrans или pluralize-->
 
-    <p><a href="{% url 'blog:post_feed' %}"><img src="{% static 'img/rss-icon.png' %}" height="64px" width="64px"
+    <p><a href="{% url 'blog:post_feed' %}" title="Подписаться на RSS"><img src="{% static 'img/rss-icon.png' %}" height="32px" width="32px"
         alt="Подписаться на RSS"></a>
     </p>
 
